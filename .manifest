@@ -1,0 +1,14 @@
+{
+	"platforms": ["web", "webos"],
+	"properties": {
+		"title": "smartvitcher",
+		"hostname": "androidtv",
+		"resolutionWidth": 1280,
+		"resolutionHeight": 720,
+		"author": { "name": "Alexey Pobery", "email": "poberyaa@gmail.com", "site": "https://github.com/comrat" },
+		"clientId": "h1k5zmt0khmhmt8y8o7xp44xp9x5d8",
+		"iconColor": "#111113",
+		"version": "0.0.1"
+	},
+	"templater": "jinja2"
+}
