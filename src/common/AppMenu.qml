@@ -15,13 +15,21 @@ Rectangle {
 
 	ListView {
 		id: menuView;
-		y: 30s;
+		y: 100s;
 		width: 200s;
 		height: 100%;
 		keyNavigationWraps: false;
 		delegate: Rectangle {
 			width: 100%;
 			height: 70s;
+
+			Image {
+				x: 10s;
+				y: 10s;
+				width: 50s;
+				height: 50s;
+				source: model.icon;
+			}
 
 			Text {
 				x: 75s;
@@ -34,10 +42,10 @@ Rectangle {
 			}
 		}
 		model: ListModel {
-			ListElement { text: "STREAMS"; }
-			ListElement { text: "GAMES"; }
-			ListElement { text: "USERS"; }
-			ListElement { text: "CLIPS"; }
+			ListElement { text: "STREAMS"; icon: "res/menu/streams.png"; }
+			ListElement { text: "GAMES"; icon: "res/menu/games.png"; }
+			ListElement { text: "USERS"; icon: "res/menu/users.png"; }
+			ListElement { text: "CLIPS"; icon: "res/menu/clips.png"; }
 		}
 	}
 
