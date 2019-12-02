@@ -6,5 +6,5 @@ Activity {
 		color: consts.backgroundColor;
 	}
 
-	onUpPressed: { menu.setFocus() }
+	onLeftPressed: { menu.setFocus() }
 }

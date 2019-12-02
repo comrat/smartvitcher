@@ -20,4 +20,9 @@ web.api.Rest {
 		name: "getStreams";
 		path: "/helix/streams";
 	}
+
+	Method {
+		name: "getVideo";
+		path: "/helix/videos?id={videoId}";
+	}
 }

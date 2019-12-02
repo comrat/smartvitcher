@@ -1,5 +1,6 @@
 Image {
 	id: posterDelegateProto;
+	signal pressed;
 	property string url: model.box_art_url;
 	property bool ready: status == Image.Ready;
 	width: 150s;
@@ -26,6 +27,9 @@ Image {
 	updatePoster: { this.source = this.url.replace("{width}", Math.floor(this.width * 1.5)).replace("{height}", Math.floor(this.height * 1.5)) }
 	onUrlChanged: { this.updatePoster() }
 	onCompleted: { this.updatePoster(); this.style('background-color', "#424242") }
+
+	onClicked: { this.pressed(model.index) }
+	onSelectPressed: { this.pressed(model.index) }
 
 	Behavior on transform { Animation { duration: consts.animationDuration; } }
 }

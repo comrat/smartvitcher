@@ -1,26 +1,35 @@
-Item {
-	width: 100%;
-	height: 70s;
+Rectangle {
+	width: activeFocus ? 230s : 70s;
+	height: 100%;
+	color: consts.accentPanelColor;
+	clip: true;
+
+	Highlighter {
+		width: 100%;
+		color: consts.focusPanelColor;
+		cssTranslatePositioning: true;
+		target: menuView;
+
+		Behavior on transform, width { Animation { duration: consts.animationDuration; } }
+	}
 
 	ListView {
 		id: menuView;
 		y: 30s;
-		width: contentWidth;
+		width: 200s;
 		height: 100%;
 		keyNavigationWraps: false;
-		orientation: ListView.Horizontal;
-		anchors.horizontalCenter: parent.horizontalCenter;
 		delegate: Rectangle {
-			width: 150s;
-			height: 100%;
+			width: 100%;
+			height: 70s;
 
 			Text {
+				x: 75s;
 				width: 100%;
 				height: 100%;
-				verticalAlignment: Text.AligVCenter;
-				horizontalAlignment: Text.AligHCenter;
+				verticalAlignment: Text.AlignVCenter;
 				font.pixelSize: 24s;
-				color: parent.activeFocus ? consts.accentTextColor : consts.textColor;
+				color: consts.textColor;
 				text: qsTr(model.text);
 			}
 		}
@@ -32,7 +41,7 @@ Item {
 		}
 	}
 
-	onDownPressed: {
+	onRightPressed: {
 		var children = root.children
 		for (var i = 0; i < children.length; ++i) {
 			var child = children[i]
@@ -42,4 +51,6 @@ Item {
 			}
 		}
 	}
+
+	Behavior on width { Animation { duration: consts.animationDuration; } }
 }
