@@ -1,4 +1,5 @@
 Rectangle {
+	signal selected;
 	width: activeFocus ? 230s : 70s;
 	height: 100%;
 	color: consts.accentPanelColor;
@@ -42,11 +43,19 @@ Rectangle {
 			}
 		}
 		model: ListModel {
-			ListElement { text: "STREAMS"; icon: "res/menu/streams.png"; }
-			ListElement { text: "GAMES"; icon: "res/menu/games.png"; }
-			ListElement { text: "USERS"; icon: "res/menu/users.png"; }
-			ListElement { text: "CLIPS"; icon: "res/menu/clips.png"; }
+			ListElement { text: "VIDEOS"; icon: "res/menu/streams.png"; activity: "videos"; }
+			ListElement { text: "GAMES"; icon: "res/menu/games.png"; activity: "games"; }
+			ListElement { text: "CLIPS"; icon: "res/menu/clips.png"; activity: "clips"; }
 		}
+
+		onCurrentIndexChanged: { indexDelay.restart() }
+	}
+
+	Timer {
+		id: indexDelay;
+		interval: 700;
+
+		onTriggered: { this.parent.selected(menuView.currentIndex) }
 	}
 
 	onRightPressed: {

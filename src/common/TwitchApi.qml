@@ -22,7 +22,12 @@ web.api.Rest {
 	}
 
 	Method {
-		name: "getVideo";
-		path: "/helix/videos?id={videoId}";
+		name: "getUserVideos";
+		path: "/helix/videos?user_id={videoId}";
+	}
+
+	Method {
+		name: "getGameVideos";
+		path: "/helix/videos?game_id={videoId}";
 	}
 }

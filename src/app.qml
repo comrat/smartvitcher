@@ -6,12 +6,12 @@ ActivityManager {
 	TwitchApi { id: api; }
 	Consts { id: consts; }
 
-	//@using { src.streams.StreamPage }
-	LazyActivity { name: "streams"; component: "src.streams.StreamPage"; }
+	//@using { src.videos.VideosPage }
+	LazyActivity { name: "videos"; component: "src.videos.VideosPage"; }
 
-	AppMenu { id: menu; }
+	AppMenu { id: menu; onSelected(idx): { log("IDX",idx) } }
 
 	onCompleted: {
-		this.push("streams")
+		this.push("videos")
 	}
 }
