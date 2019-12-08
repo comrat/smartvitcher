@@ -7,18 +7,17 @@ PageActivity {
 		y: 30s;
 
 		onSearch(request): {
-			log("SEARCH", request)
-			if (request)
-				api.getUsers(
-					request,
-					function(res) {
-						if (!res || !res.data || res.data.length == 0)
-							return
-						log("RES",res.data[0])
-						api.getUserVideos(res.data[0].id, function(videos) { videosGrid.fill(videos) }, function() {})
-					},
-					function() {}
-				)
+			if (!request)
+				return
+			api.getUsers(
+				request,
+				function(res) {
+					if (!res || !res.data || res.data.length == 0)
+						return
+					api.getUserVideos(res.data[0].id, function(videos) { videosGrid.fill(videos) }, function() {})
+				},
+				function() {}
+			)
 		}
 
 		onDownPressed: { videosGrid.setFocus() }
