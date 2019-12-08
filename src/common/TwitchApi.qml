@@ -40,4 +40,14 @@ web.api.Rest {
 		name: "getUsers";
 		path: "/helix/users?login={name}";
 	}
+
+	Method {
+		name: "getUserClips";
+		path: "/helix/clips?broadcaster_id={broadcasterId}";
+	}
+
+	Method {
+		name: "getGameClips";
+		path: "/helix/clips?game_id={gameId}";
+	}
 }

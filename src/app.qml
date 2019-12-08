@@ -8,6 +8,8 @@ ActivityManager {
 
 	//@using { src.videos.VideosPage }
 	LazyActivity { name: "videos"; component: "src.videos.VideosPage"; }
+	//@using { src.clips.ClipsPage }
+	LazyActivity { name: "clips"; component: "src.clips.ClipsPage"; }
 
 	//@using { src.player.TwitchPlayerPage }
 	LazyActivity { name: "player"; component: "src.player.TwitchPlayerPage"; }
@@ -16,7 +18,7 @@ ActivityManager {
 		id: menu;
 		visible: root.count == 1;
 
-		onSelected(idx): { log("IDX",idx) }
+		onSelected(option): { root.replaceTopActivity(option.activity) }
 	}
 
 	onCompleted: {

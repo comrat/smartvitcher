@@ -44,7 +44,6 @@ Rectangle {
 		}
 		model: ListModel {
 			ListElement { text: "VIDEOS"; icon: "res/menu/streams.png"; activity: "videos"; }
-			ListElement { text: "GAMES"; icon: "res/menu/games.png"; activity: "games"; }
 			ListElement { text: "CLIPS"; icon: "res/menu/clips.png"; activity: "clips"; }
 		}
 
@@ -55,7 +54,7 @@ Rectangle {
 		id: indexDelay;
 		interval: 700;
 
-		onTriggered: { this.parent.selected(menuView.currentIndex) }
+		onTriggered: { this.parent.selected(menuView.model.get(menuView.currentIndex)) }
 	}
 
 	onRightPressed: {
