@@ -7,7 +7,7 @@ Item {
 		id: searchInput;
 		width: 600s;
 		height: 100%;
-		placeholder.text: "search";
+		placeholder.text: "User";
 		backgroundColor: consts.panelColor;
 		horizontalAlignment: Text.AlignHCenter;
 		color: consts.textColor;

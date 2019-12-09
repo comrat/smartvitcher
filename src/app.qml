@@ -10,6 +10,8 @@ ActivityManager {
 	LazyActivity { name: "videos"; component: "src.videos.VideosPage"; }
 	//@using { src.clips.ClipsPage }
 	LazyActivity { name: "clips"; component: "src.clips.ClipsPage"; }
+	//@using { src.streams.StreamsPage }
+	LazyActivity { name: "streams"; component: "src.streams.StreamsPage"; }
 
 	//@using { src.player.TwitchPlayerPage }
 	LazyActivity { name: "player"; component: "src.player.TwitchPlayerPage"; }

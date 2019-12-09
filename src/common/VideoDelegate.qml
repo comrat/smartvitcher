@@ -32,7 +32,13 @@ Rectangle {
 
 	Border { width: parent.activeFocus ? 3s : 0; color: consts.accentTextColor; }
 
-	updatePoster: { videoPreview.source = this.thumbnail.replace("%{width}", Math.floor(this.width * 1.5)).replace("%{height}", Math.floor(this.height * 1.5)) }
+	updatePoster: {
+		if (this.thumbnail.indexOf("%{width}") >= 0)
+			videoPreview.source = this.thumbnail.replace("%{width}", Math.floor(this.width * 1.5)).replace("%{height}", Math.floor(this.height * 1.5))
+		else
+			videoPreview.source = this.thumbnail.replace("{width}", Math.floor(this.width * 1.5)).replace("{height}", Math.floor(this.height * 1.5))
+	}
+
 	onThumbnailChanged: { this.updatePoster() }
 
 	onClicked: { this.pressed(model.index) }

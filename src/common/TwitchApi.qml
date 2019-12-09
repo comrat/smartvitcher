@@ -50,4 +50,14 @@ web.api.Rest {
 		name: "getGameClips";
 		path: "/helix/clips?game_id={gameId}";
 	}
+
+	Method {
+		name: "getUserStreams";
+		path: "/helix/streams?user_id={broadcasterId}";
+	}
+
+	Method {
+		name: "getGameStreams";
+		path: "/helix/streams?game_id={gameId}";
+	}
 }

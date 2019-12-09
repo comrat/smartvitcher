@@ -43,8 +43,9 @@ Rectangle {
 			}
 		}
 		model: ListModel {
-			ListElement { text: "VIDEOS"; icon: "res/menu/streams.png"; activity: "videos"; }
+			ListElement { text: "VIDEOS"; icon: "res/menu/videos.png"; activity: "videos"; }
 			ListElement { text: "CLIPS"; icon: "res/menu/clips.png"; activity: "clips"; }
+			ListElement { text: "STREAMS"; icon: "res/menu/streams.png"; activity: "streams"; }
 		}
 
 		onCurrentIndexChanged: { indexDelay.restart() }
