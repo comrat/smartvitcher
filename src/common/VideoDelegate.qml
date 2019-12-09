@@ -16,6 +16,23 @@ Rectangle {
 		property bool ready: status == Image.Ready;
 	}
 
+	Rectangle {
+		x: 5s;
+		y: 5s;
+		width: 35s;
+		height: 20s;
+		color: "red";
+		visible: model.type == "live";
+
+		Text {
+			x: 2s;
+			y: 2s;
+			font.pixelSize: 14s;
+			color: consts.textColor;
+			text: "LIVE";
+		}
+	}
+
 	Text {
 		y: 163s;
 		width: 100%;
