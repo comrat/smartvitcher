@@ -1,11 +1,12 @@
 Item {
 	signal search;
-	width: 660s;
+	width: 1000s;
 	height: 50s;
 
 	TextInput {
 		id: searchInput;
-		width: 600s;
+		x: 90s;
+		width: 900s;
 		height: 100%;
 		placeholder.text: "User";
 		backgroundColor: consts.panelColor;
@@ -18,7 +19,7 @@ Item {
 	}
 
 	Image {
-		x: 610s;
+		x: 20s;
 		width: height;
 		height: 100%;
 		source: "res/search.png";
