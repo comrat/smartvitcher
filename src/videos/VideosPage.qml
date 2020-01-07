@@ -1,4 +1,5 @@
 PageActivity {
+	id: videosPageProto;
 	name: "videos";
 
 	SearchTextInput {
@@ -14,7 +15,8 @@ PageActivity {
 				function(res) {
 					if (!res || !res.data || res.data.length == 0)
 						return
-					api.getUserVideos(res.data[0].id, function(videos) { videosGrid.fill(videos) }, function() {})
+					videosGrid.contentId = res.data[0].id
+					api.getUserVideos(videosGrid.contentId, function(videos) { videosGrid.fill(videos) }, function() {})
 				},
 				function() {}
 			)
@@ -34,6 +36,19 @@ PageActivity {
 			x: 160s;
 			y: 34s;
 
+			onCurrentRowChanged: {
+				var self = this
+				if (value >= this.rows - 3 && this._next && !this.busy) {
+					this.busy = true
+					api.getUserVideos(
+						this.contentId,
+						this._next,
+						function(res) { self._next = res.pagination.cursor; videosGrid.append(res); self.busy = false },
+						function() { self.busy = false }
+					)
+				}
+			}
+
 			onSelected(idx): {
 				var row = this.model.get(idx)
 				root.push("player", row)
@@ -44,8 +59,10 @@ PageActivity {
 	}
 
 	init: {
-		if (videosGrid.count == 0)
-			api.getGameVideos(488552, function(res) { videosGrid.fill(res) }, function() {})
+		if (videosGrid.count == 0) {
+			videosGrid.contentId = 121930779
+			api.getUserVideos(videosGrid.contentId, function(res) { videosGrid._next = res.pagination.cursor; videosGrid.fill(res) }, function() {})
+		}
 		videosGrid.setFocus()
 	}
 }

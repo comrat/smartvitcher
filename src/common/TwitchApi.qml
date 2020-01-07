@@ -28,12 +28,12 @@ web.api.Rest {
 
 	Method {
 		name: "getUserVideos";
-		path: "/helix/videos?user_id={userId}";
+		path: "/helix/videos?user_id={userId}&after={cursor}";
 	}
 
 	Method {
 		name: "getGameVideos";
-		path: "/helix/videos?game_id={gameId}";
+		path: "/helix/videos?game_id={gameId}&after={cursor}";
 	}
 
 	Method {
