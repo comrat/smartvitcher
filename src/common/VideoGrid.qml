@@ -18,9 +18,7 @@ GridView {
 	model: ListModel { }
 	delegate: VideoDelegate { onPressed(idx): { this.parent.selected(idx) } }
 
-	onCurrentIndexChanged: {
-		this.currentRow = Math.floor(value / this.columns)
-	}
+	onCurrentIndexChanged: { this.currentRow = Math.floor(value / this.columns) }
 
 	onKeyPressed: {
 		if (!this.recursiveVisible)
@@ -42,6 +40,25 @@ GridView {
 				else
 					return this.moveRight()
 		}
+	}
+
+	findVideos(contentId, append, method): {
+		this.busy = true
+		var self = this
+		this.contentId = contentId
+		method(
+			this.contentId,
+			this._next ? this._next : "",
+			function(res) {
+				self._next = res.pagination.cursor
+				if (append)
+					self.append(res)
+				else
+					self.fill(res)
+				self.busy = false
+			},
+			function() { self.busy = false }
+		)
 	}
 
 	fill(res): { this.model.assign(res.data) }

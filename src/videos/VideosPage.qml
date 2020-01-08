@@ -15,7 +15,7 @@ PageActivity {
 				function(res) {
 					if (!res || !res.data || res.data.length == 0)
 						return
-					videosGrid.findVideos(res.data[0].id)
+					videosGrid.findVideos(res.data[0].id, false, api.getUserVideos )
 				},
 				function() {}
 			)
@@ -38,32 +38,13 @@ PageActivity {
 			onCurrentRowChanged: {
 				var self = this
 				if (value >= this.rows - 3 && this._next && !this.busy) {
-					this.findVideos(this.contentId, true)
+					this.findVideos(this.contentId, true, api.getUserVideos)
 				}
 			}
 
 			onSelected(idx): {
 				var row = this.model.get(idx)
 				root.push("player", row)
-			}
-
-			findVideos(contentId, append): {
-				this.busy = true
-				var self = this
-				this.contentId = contentId
-				api.getUserVideos(
-					this.contentId,
-					this._next ? this._next : "",
-					function(res) {
-						self._next = res.pagination.cursor
-						if (append)
-							videosGrid.append(res)
-						else
-							videosGrid.fill(res)
-						self.busy = false
-					},
-					function() { self.busy = false }
-				)
 			}
 		}
 
@@ -72,7 +53,7 @@ PageActivity {
 
 	init: {
 		if (videosGrid.count == 0)
-			videosGrid.findVideos("121930779")
+			videosGrid.findVideos("121930779", false, api.getUserVideos)
 		videosGrid.setFocus()
 	}
 }
