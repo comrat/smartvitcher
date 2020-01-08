@@ -15,8 +15,7 @@ PageActivity {
 				function(res) {
 					if (!res || !res.data || res.data.length == 0)
 						return
-					videosGrid.contentId = res.data[0].id
-					api.getUserVideos(videosGrid.contentId, function(videos) { videosGrid.fill(videos) }, function() {})
+					videosGrid.findVideos(res.data[0].id)
 				},
 				function() {}
 			)
@@ -39,13 +38,7 @@ PageActivity {
 			onCurrentRowChanged: {
 				var self = this
 				if (value >= this.rows - 3 && this._next && !this.busy) {
-					this.busy = true
-					api.getUserVideos(
-						this.contentId,
-						this._next,
-						function(res) { self._next = res.pagination.cursor; videosGrid.append(res); self.busy = false },
-						function() { self.busy = false }
-					)
+					this.findVideos(this.contentId, true)
 				}
 			}
 
@@ -53,16 +46,33 @@ PageActivity {
 				var row = this.model.get(idx)
 				root.push("player", row)
 			}
+
+			findVideos(contentId, append): {
+				this.busy = true
+				var self = this
+				this.contentId = contentId
+				api.getUserVideos(
+					this.contentId,
+					this._next ? this._next : "",
+					function(res) {
+						self._next = res.pagination.cursor
+						if (append)
+							videosGrid.append(res)
+						else
+							videosGrid.fill(res)
+						self.busy = false
+					},
+					function() { self.busy = false }
+				)
+			}
 		}
 
 		onUpPressed: { videoSearchInput.setFocus() }
 	}
 
 	init: {
-		if (videosGrid.count == 0) {
-			videosGrid.contentId = 121930779
-			api.getUserVideos(videosGrid.contentId, function(res) { videosGrid._next = res.pagination.cursor; videosGrid.fill(res) }, function() {})
-		}
+		if (videosGrid.count == 0)
+			videosGrid.findVideos("121930779")
 		videosGrid.setFocus()
 	}
 }
