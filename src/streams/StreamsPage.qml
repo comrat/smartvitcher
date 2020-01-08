@@ -14,7 +14,7 @@ PageActivity {
 				function(res) {
 					if (!res || !res.data || res.data.length == 0)
 						return
-					api.getUserStreams(res.data[0].id, function(stream) { streamGrid.fill(stream) }, function() {})
+					streamGrid.findVideos(res.data[0].id, false, api.getUserStreams)
 				},
 				function() {}
 			)
@@ -45,7 +45,7 @@ PageActivity {
 
 	init: {
 		if (streamGrid.count == 0)
-			api.getGameStreams(488552, function(res) { streamGrid.fill(res) }, function() {})
+			streamGrid.findVideos("121930779", false, api.getGameStreams)
 		streamGrid.setFocus()
 	}
 }

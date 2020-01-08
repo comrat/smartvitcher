@@ -42,10 +42,19 @@ GridView {
 		}
 	}
 
+	onCurrentRowChanged: {
+		var self = this
+		if (value >= this.rows - 3 && this._next && !this.busy && this.method) {
+			this.findVideos(this.contentId, true, this.method)
+		}
+	}
+
+
 	findVideos(contentId, append, method): {
 		this.busy = true
 		var self = this
 		this.contentId = contentId
+		this.method = method
 		method(
 			this.contentId,
 			this._next ? this._next : "",

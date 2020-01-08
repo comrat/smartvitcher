@@ -14,7 +14,7 @@ PageActivity {
 				function(res) {
 					if (!res || !res.data || res.data.length == 0)
 						return
-					api.getUserClips(res.data[0].id, function(clip) { clipGrid.fill(clip) }, function() {})
+					clipGrid.findVideos(res.data[0].id, false, api.getUserClips)
 				},
 				function() {}
 			)
@@ -45,7 +45,7 @@ PageActivity {
 
 	init: {
 		if (clipGrid.count == 0)
-			api.getGameClips(488552, function(res) { clipGrid.fill(res) }, function() {})
+			clipGrid.findVideos("121930779", false, api.getUserClips)
 		clipGrid.setFocus()
 	}
 }
