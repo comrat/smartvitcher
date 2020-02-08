@@ -1,4 +1,4 @@
-web.api.Rest {
+Rest {
 	property string clientId: "h1k5zmt0khmhmt8y8o7xp44xp9x5d8";
 	baseUrl: "https://api.twitch.tv";
 
