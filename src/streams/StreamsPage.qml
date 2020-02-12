@@ -23,6 +23,14 @@ PageActivity {
 		onDownPressed: { streamGrid.setFocus() }
 	}
 
+	Text {
+		anchors.centerIn: parent;
+		text: streamGrid.busy ? "Loading..." : "No content";
+		color: consts.textColor;
+		font.pixelSize: 32;
+		visible: streamGrid.count == 0;
+	}
+
 	Item {
 		y: 100s;
 		width: 100%;

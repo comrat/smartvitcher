@@ -49,7 +49,6 @@ GridView {
 		}
 	}
 
-
 	findVideos(contentId, append, method): {
 		this.busy = true
 		var self = this

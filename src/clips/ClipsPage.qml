@@ -23,6 +23,14 @@ PageActivity {
 		onDownPressed: { clipGrid.setFocus() }
 	}
 
+	Text {
+		anchors.centerIn: parent;
+		text: clipGrid.busy ? "Loading..." : "No content";
+		color: consts.textColor;
+		font.pixelSize: 32;
+		visible: clipGrid.count == 0;
+	}
+
 	Item {
 		y: 100s;
 		width: 100%;

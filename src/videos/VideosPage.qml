@@ -24,6 +24,14 @@ PageActivity {
 		onDownPressed: { videosGrid.setFocus() }
 	}
 
+	Text {
+		anchors.centerIn: parent;
+		text: videosGrid.busy ? "Loading..." : "No content";
+		color: consts.textColor;
+		font.pixelSize: 32;
+		visible: videosGrid.count == 0;
+	}
+
 	Item {
 		y: 100s;
 		width: 100%;
