@@ -42,6 +42,13 @@ PageActivity {
 			x: 160s;
 			y: 34s;
 
+			onCurrentRowChanged: {
+				var self = this
+				if (value >= this.rows - 3 && this._next && !this.busy) {
+					this.findVideos(this.contentId, true, api.getUserClips)
+				}
+			}
+
 			onSelected(idx): {
 				var row = this.model.get(idx)
 				root.push("player", row)
