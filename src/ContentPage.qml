@@ -2,7 +2,7 @@ PageActivity {
 	id: contentPageProto;
 
 	SearchTextInput {
-		id: searchInput;
+		id: searchLine;
 		x: 160s;
 		y: 30s;
 
@@ -55,7 +55,7 @@ PageActivity {
 			}
 		}
 
-		onUpPressed: { searchInput.setFocus() }
+		onUpPressed: { searchLine.setFocus() }
 	}
 
 	initContentPage(getContentFunc): {
