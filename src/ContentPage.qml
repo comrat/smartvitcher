@@ -15,6 +15,10 @@ PageActivity {
 					if (!res || !res.data || res.data.length == 0)
 						return
 					contentGrid.findVideos(res.data[0].id, false, contentPageProto._getContentFunc)
+					api.searchGame(request, function(search) {
+						if (search && search.data && search.data.length)
+							contentGrid.findVideos(search.data[0].id, true, contentPageProto._altGetContentFunc)
+					}, function() {})
 				},
 				function() {}
 			)
@@ -46,6 +50,7 @@ PageActivity {
 				var self = this
 				if (value >= this.rows - 3 && this._next && !this.busy) {
 					this.findVideos(this.contentId, true, contentPageProto._getContentFunc)
+					this.findVideos(this.contentId, true, contentPageProto._altGetContentFunc)
 				}
 			}
 
@@ -58,8 +63,9 @@ PageActivity {
 		onUpPressed: { searchLine.setFocus() }
 	}
 
-	initContentPage(getContentFunc): {
+	initContentPage(getContentFunc, altGetContentFunc): {
 		this._getContentFunc = getContentFunc
+		this._altGetContentFunc = altGetContentFunc
 		if (contentGrid.count == 0)
 			contentGrid.findVideos("121930779", false, getContentFunc)
 		contentGrid.setFocus()

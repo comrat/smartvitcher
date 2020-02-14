@@ -8,7 +8,7 @@ Item {
 		x: 90s;
 		width: 900s;
 		height: 100%;
-		placeholder.text: "User";
+		placeholder.text: "User, game";
 		backgroundColor: consts.panelColor;
 		horizontalAlignment: Text.AlignHCenter;
 		color: consts.textColor;

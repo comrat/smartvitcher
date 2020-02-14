@@ -1,5 +1,5 @@
 ContentPage {
 	name: "streams";
 
-	init: { this.initContentPage(api.getUserStreams) }
+	init: { this.initContentPage(api.getUserStreams, api.getGameStreams) }
 }
