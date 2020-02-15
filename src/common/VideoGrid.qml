@@ -69,6 +69,7 @@ GridView {
 		)
 	}
 
+	clear: { this.model.clear() }
 	fill(res): { this.model.assign(res.data) }
 	append(res): { this.model.append(res.data) }
 }

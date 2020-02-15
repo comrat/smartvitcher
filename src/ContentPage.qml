@@ -6,21 +6,29 @@ PageActivity {
 		x: 160s;
 		y: 30s;
 
+		searchGame(request, append): {
+			api.searchGame(request, function(search) {
+				if (search && search.data && search.data.length)
+					contentGrid.findVideos(search.data[0].id, append, contentPageProto._altGetContentFunc)
+			}, function() {})
+		}
+
 		onSearch(request): {
 			if (!request)
 				return
+			var self = this
+			contentGrid.clear()
 			api.getUsers(
 				request,
 				function(res) {
-					if (!res || !res.data || res.data.length == 0)
-						return
-					contentGrid.findVideos(res.data[0].id, false, contentPageProto._getContentFunc)
-					api.searchGame(request, function(search) {
-						if (search && search.data && search.data.length)
-							contentGrid.findVideos(search.data[0].id, true, contentPageProto._altGetContentFunc)
-					}, function() {})
+					if (!res || !res.data || res.data.length == 0) {
+						self.searchGame(request, false)
+					} else {
+						contentGrid.findVideos(res.data[0].id, false, contentPageProto._getContentFunc)
+						self.searchGame(request, true)
+					}
 				},
-				function() {}
+				function() { self.searchGame(request, true) }
 			)
 		}
 
