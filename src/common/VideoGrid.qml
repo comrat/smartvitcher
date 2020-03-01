@@ -21,7 +21,7 @@ GridView {
 	onCurrentIndexChanged: { this.currentRow = Math.floor(value / this.columns) }
 
 	onKeyPressed: {
-		if (!this.recursiveVisible)
+		if (!this.recursiveVisible || this.count == 0)
 			return false
 
 		var columnCount = this.columns
