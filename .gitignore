@@ -1,4 +1,4 @@
 build.*
 .cache
-*.ipk
-*.zip
+com.*.ipk
+smartvitcher*.zip
