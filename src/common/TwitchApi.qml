@@ -1,8 +1,10 @@
 Rest {
 	property string clientId: "h1k5zmt0khmhmt8y8o7xp44xp9x5d8";
+	property string accessToken: "0rgd3ppq7bb9w5v63lh1x5714lcml7";
 	baseUrl: "https://api.twitch.tv";
 
 	function headers(headers) {
+		headers["Authorization"] = "Bearer " + this.accessToken
 		headers["Client-ID"] = this.clientId
 	}
 
