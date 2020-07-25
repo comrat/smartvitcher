@@ -1,0 +1,17 @@
+{
+	"id": "com.smartvitcher.app",
+	"version": "0.0.1",
+	"vendor": "Alexey Pobery",
+	"type": "web",
+	"main": "index.html",
+	"title": "smartvitcher",
+	"bgColor": "#F4511E",
+	"bgImage": "preview.png",
+	"icon": "icon.png",
+	"largeIcon": "icon.png",
+	"resolution":"1280x720",
+	"iconColor": "#F4511E",
+	"splashBackground": "splash.png",
+	"disableBackHistoryAPI":true,
+	"uiRevision":1
+}
