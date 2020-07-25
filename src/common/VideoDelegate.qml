@@ -6,6 +6,9 @@ Rectangle {
 	height: 200s;
 	transform.scale: activeFocus ? 1.2 : 1.0;
 	color: consts.panelColor;
+	border.width: activeFocus ? 3s : 0;
+	border.color: consts.accentTextColor;
+	border.type: Border.Outer;
 	clip: true;
 	z: activeFocus ? parent.z + 1 : parent.z;
 
@@ -45,9 +48,6 @@ Rectangle {
 	}
 
 	ClickMixin { }
-	FocusOnHoverMixin { }
-
-	Border { width: parent.activeFocus ? 3s : 0; color: consts.accentTextColor; }
 
 	updatePoster: {
 		if (this.thumbnail.indexOf("%{width}") >= 0)
